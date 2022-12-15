@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) =>
     }
   }),
 );
-
+//Notification bell alerts the user that someone has favorited their tweet
 export const NotificationBell: React.FC<{}> = () => {
     const classes = useStyles()
     const { newFavorites, clearNewFavorites } = useFavoriteSubscription()

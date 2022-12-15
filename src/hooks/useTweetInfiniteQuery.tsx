@@ -3,7 +3,7 @@ import { useInfiniteQuery, useQueryClient, InfiniteData } from 'react-query'
 import { fetchTweets, TweetResponse } from '../api/tweets'
 import { useAuth } from '../contexts/authContext'
 import { useTweetSubscription } from './useTweetSubscription'
-
+//Will run an infinite query to see if there are new tweets
 export const useTweetInfiniteQuery = (userIdToFilterBy?: string) => {
     const { user } = useAuth()
     const { newTweetAvailable, setNewTweetAvailable } = useTweetSubscription()

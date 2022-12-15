@@ -13,7 +13,7 @@ type NewTweetAlertProps = {
     newTweetAvailable: boolean
     fetchNewTweets: () => void
 }
-
+//Alerts the user that there is a new tweet and that their feed is outdated
 export const NewTweetAlert: React.FC<NewTweetAlertProps> = ({ newTweetAvailable, fetchNewTweets }) => {
     const classes = useStyles()
     const action = (

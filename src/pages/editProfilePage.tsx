@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     height: "8em"
   }
 }));
-
+//Handles the editing of the User profile page from username checking to profile avatar upload
 const EditProfilePage: React.FC<CreateProfilePageProps> = ({}) => {
   const classes = useStyles();
   const { user } = useAuth();

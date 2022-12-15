@@ -24,7 +24,7 @@ export const TweetPage = () => {
     })
     const queryClient = useQueryClient()
 
-
+//Queries the Supabase database through the use of the Supabase API in order to retrieve the list of tweets
 
     const mutation = useMutation(createTweet, {
         onMutate: (tweet) => {

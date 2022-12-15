@@ -6,7 +6,7 @@ import { AVATAR_BUCKET } from "../constants";
 type UploadCallback = (event: ChangeEvent<HTMLInputElement>) => Promise<void>;
 type Error = { message: string };
 export type UseUploadResult = [UploadCallback, string | null, Error | null, boolean];
-
+//Used to upload tweets and or user information such as avatars
 export const useUpload = (user: User | null): UseUploadResult => {
   const [loading, setLoading] = useState<boolean>(true);
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);

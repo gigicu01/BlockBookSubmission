@@ -25,17 +25,17 @@ const useStyles = makeStyles((theme) => ({
       height: "8em"
     }
   }));
-
+//Queries Supabase through the API in order to grab the profile data of the signed in user to display said information 
 export const ViewProfilePage: React.FC<{}> = ({}) => {
     const classes = useStyles()
     const { user } = useAuth()
-
+    //Retrieves the User-ID
     let userIdQuery = new URLSearchParams(window.location.search).get(
         "userId"
     )
-
+    //Uses profile in formation to grab profile information
     const [profile, profileError, profileLoading] = useProfile("id", userIdQuery || user?.id)
-
+    //If no user is signed in then the user is redirected to the sign in page
     if(!user && !userIdQuery) {
         return <Redirect to="/signin" />
     }

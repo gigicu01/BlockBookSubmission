@@ -19,14 +19,14 @@ type FetchOlderTweetsButtonProps = {
   isLoading?: boolean
   fetchOlderTweets: () => void
 }
-
+//Allows the user to retrieve older tweets
 export const FetchOlderTweetsButton: React.FC<FetchOlderTweetsButtonProps> = ({
   hasPreviousPage,
   fetchOlderTweets,
   isLoading,
 }) => {
   const classes = useStyles()
-
+//Reders the fetch tweets and feed status
   const renderContent = () => {
     switch (true) {
       case !hasPreviousPage:

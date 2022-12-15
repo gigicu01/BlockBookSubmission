@@ -4,7 +4,7 @@ import { supabaseClient } from '../api/supabaseClient'
 import { FAVORITES_TABLE } from '../constants'
 import { useAuth } from '../contexts/authContext'
 
-
+//Allows the user to retrieve favotites tweets and clear their favorited list
 export const useFavoriteSubscription = () => {
     const { user } = useAuth()
     const [newFavorites, setNewFavorites] = useState<number[]>([]);

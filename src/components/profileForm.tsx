@@ -13,6 +13,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
+//This handles the profile configuration page from username setup to avatar configuration
+
 
 export type ProfileInput = {
     username: string

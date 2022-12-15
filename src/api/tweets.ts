@@ -5,7 +5,7 @@ import { FAVORITES_TABLE, TWEETS_TABLE } from '../constants';
 import { Profile } from '../hooks/useProfile';
 import { getRandomInt } from '../util/random';
 import { definitions } from './types';
-
+//Creates the TweetServerResponse datatype that contains the tweet id, tweet content, timestamp, favorited users, and the tweet author
 type TweetServerResponse = {
     id: number
     content: string
@@ -13,7 +13,7 @@ type TweetServerResponse = {
     favorited_users: { id: string, username: string }[]
     tweet_author: definitions["profiles"]
 }
-
+//Exports the tweet datatype that contains tweet information such as id, if the tweet is favorited, the number of favorites, who it was favorited by, the original author, timestamp,tweet content, and if it has been mutated
 export type Tweet = {
     id: number
     isFavorited: boolean
@@ -24,14 +24,14 @@ export type Tweet = {
     content: string,
     hasBeenAddedByMutate?: boolean
 }
-
+//Raw tweet information that all tweets have
 export type RawTweet = {
     id: number,
     createdAt: string,
     user_id: string,
     content: string
 }
-
+//All tweet information that needs exported so that a tweet body can be requested
 export type AddTweetRequestBody = {
     user_id: string
     content: string
@@ -42,7 +42,7 @@ export type TweetResponse = {
     next?: string
     previous?: string
 }
-
+//Exports the fetched tweets based on the query pased in 
 export const fetchTweets: QueryFunction<TweetResponse, [string, string | undefined, string | undefined]> = async ({ queryKey, pageParam }) => {
     const [_key, loggedInUserId, userIdToFilterTweetsBy] = queryKey
     const { to, from } = pageParam || {}
@@ -66,7 +66,7 @@ export const fetchTweets: QueryFunction<TweetResponse, [string, string | undefin
     // 
     // Twitter circumvents this problem as their feed isn't chronological.
     const ascending = !!from
-
+//query constant
     const query = supabaseClient
         .rpc<TweetServerResponse>('get_tweets', params)
         .order("createdat", { ascending })
@@ -82,7 +82,7 @@ export const fetchTweets: QueryFunction<TweetResponse, [string, string | undefin
             tweets: []
         }
     }
-
+//outputs the tweet response 
     let output: TweetResponse = {
         tweets: data.map(fromResponseToTweet(loggedInUserId as string | undefined)),
     }
