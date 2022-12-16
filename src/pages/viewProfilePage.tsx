@@ -28,14 +28,14 @@ const useStyles = makeStyles((theme) => ({
 //Queries Supabase through the API in order to grab the profile data of the signed in user to display said information 
 export const ViewProfilePage: React.FC<{}> = ({}) => {
     const classes = useStyles()
-    const { user } = useAuth()
+    const { user } = useAuth() // we use the authcontext to be able to get the session and figure out if the user is logged in and get his info
     //Retrieves the User-ID
     let userIdQuery = new URLSearchParams(window.location.search).get(
         "userId"
     )
-    //Uses profile in formation to grab profile information
+    //Grabs the user information based on the id stored in the session
     const [profile, profileError, profileLoading] = useProfile("id", userIdQuery || user?.id)
-    //If no user is signed in then the user is redirected to the sign in page
+    //If no user is signed in (so there is no session) then the user is redirected to the sign in page
     if(!user && !userIdQuery) {
         return <Redirect to="/signin" />
     }
@@ -71,7 +71,7 @@ export const ViewProfilePage: React.FC<{}> = ({}) => {
             return <Redirect to="/signin" />
         }
     }
-
+    // displays the UI of the profile page
     return (
         <>
             <Paper variant="outlined" className={classes.paper}>

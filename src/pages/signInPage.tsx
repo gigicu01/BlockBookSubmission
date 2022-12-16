@@ -61,7 +61,7 @@ const SignInPage = () => {
     // then redirect them to the page they were on, or the root page.
     history.push(redirectUri || "/");
   };
-
+  // the form we use to get the user info
   return (
     <Paper variant="outlined" className={classes.paper}>
       <Typography variant="h5" align="center">

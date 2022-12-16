@@ -30,25 +30,26 @@ const useStyles = makeStyles((theme) => ({
 
 export const SignUpPage = () => {
   const classes = useStyles();
-  const { register, handleSubmit, watch, errors } = useForm();
+  const { register, handleSubmit, watch, errors } = useForm(); // gets the form state with all its parameters
   const password = watch("password");
   const history = useHistory();
 
   const onSubmit = async ({ email, password }: any) => {
-    const { error } = await supabaseClient.auth.signUp({
+    const { error } = await supabaseClient.auth.signUp({ // registers the user in the database
       email,
       password,
     });
     if (error) {
-      // we should alert the user but we can do that later.
+      // alerting the user if something is wrong
       console.log(error);
       alert(error.message)
       return;
     }
 
-    history.push(`/confirm-signup?email=${encodeURIComponent(email)}`);
+    history.push(`/confirm-signup?email=${encodeURIComponent(email)}`); // redirects to the confirm email page
   };
-
+  // Below is the form that we use to get the user data. It is using validation to ensure the inputs respects some rules.
+  //on submission we call the onSubmit function to register the user in the database.
   return (
     <Paper variant="outlined" className={classes.paper}>
       <Typography variant="h5" align="center">

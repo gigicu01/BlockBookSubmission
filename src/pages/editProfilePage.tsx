@@ -31,12 +31,12 @@ const useStyles = makeStyles((theme) => ({
 //Handles the editing of the User profile page from username checking to profile avatar upload
 const EditProfilePage: React.FC<CreateProfilePageProps> = ({}) => {
   const classes = useStyles();
-  const { user } = useAuth();
-  const [saved, setSaved] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [profile, profileError, profileLoading] = useProfile("id", user?.id);
-  const [usernameExists, setUsernameExists] = useState(false)
-  const [onUpload, uploadedAvatarUrl, uploadError, isUploading] = useUpload(user)
+  const { user } = useAuth(); // we use the authcontext to be able to get the session and figure out if the user is logged in and get his info
+  const [saved, setSaved] = useState(false);   // getting info on whether the changes to the state were saved
+  const [isSubmitting, setIsSubmitting] = useState(false);  // getting info on whether the changes to the state were submitted
+  const [profile, profileError, profileLoading] = useProfile("id", user?.id); // getting info about the profile based on id
+  const [usernameExists, setUsernameExists] = useState(false) // get info about whether the username exists
+  const [onUpload, uploadedAvatarUrl, uploadError, isUploading] = useUpload(user) //using the Upload hook to enable uploading features
 
 
   if (profileLoading) { //if the page is not loading it will send it to a loading page

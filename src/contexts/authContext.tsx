@@ -7,7 +7,9 @@ export type AuthContext = {
 }
 
 const AuthContext = React.createContext<AuthContext>({ user: null});
-
+// This is the function that monitors whether the user is signed in or has signed out and acts accordignly to change the session.
+// When the user signs is, it sets the user info in the session to the info of the user that signs in.
+// WHen the user signs out, it clears the information in the session.
 export const AuthProvider:React.FC<{}> = ({ children }) => {
     const [user, setUser] = useState<User | null>(supabaseClient.auth.session()?.user || null)
     useEffect(()=> {
@@ -27,7 +29,7 @@ export const AuthProvider:React.FC<{}> = ({ children }) => {
         {children}
     </AuthContext.Provider>
 }
-
+// checks whether the user has changed
 const userHasChanged = (currentUser: User | null, session: AuthSession | null) => {
     return currentUser?.id !== session?.user?.id
 }

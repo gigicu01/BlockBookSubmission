@@ -15,8 +15,8 @@ const useStyles = makeStyles(() => ({
 
 export const TweetPage = () => {
     const classes = useStyles();
-    const { user } = useAuth()
-    const { isLoading, isError, data, error } = useQuery(['profile', user?.id], async () => {
+    const { user } = useAuth() // we use the authcontext to be able to get the session and figure out if the user is logged in and get his info
+    const { isLoading, isError, data, error } = useQuery(['profile', user?.id], async () => { // trying to get the profile based on userid
         return await fetchProfileById(user!.id)
     }, {
         enabled: !!user?.id,
@@ -24,10 +24,12 @@ export const TweetPage = () => {
     })
     const queryClient = useQueryClient()
 
-//Queries the Supabase database through the use of the Supabase API in order to retrieve the list of tweets
+//Queries the Supabase database through the use of the Supabase API in order to retrieve the list of tweets. On mutation (when something is changed),
+// for example if a new tweet is posted, we trigger this function again to get the list of tweets again so we can show the new tweet as well.
 
     const mutation = useMutation(createTweet, {
         onMutate: (tweet) => {
+            // use the queryClient to get the tweets from the database
             if (tweet) {
                 queryClient.setQueryData<InfiniteData<TweetResponse>>(['tweets', user?.id, undefined], old => {
                     const newTweet = fromTweetRequestToTweet(tweet, data!)

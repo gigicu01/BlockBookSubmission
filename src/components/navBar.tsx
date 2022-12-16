@@ -53,7 +53,7 @@ export const NavBar = ({}) => {
             </Link>
             
           </Typography>
-          {
+          {   // If user is not null display sign out in navbar, otherwise display sign in
               user ? 
                 <Link underline="none" component={RouterLink} to="/signout" color="inherit">
                     <Button color="inherit">

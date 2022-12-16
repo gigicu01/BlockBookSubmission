@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 export const SignOutPage = () => {
   const classes = useStyles();
   useEffect(() => {
-    supabaseClient.auth.signOut().then(console.log);
+    supabaseClient.auth.signOut().then(console.log); // uses an API call to sign out the user and close the session
   }, []);
 //the sign out page confirms that it has been signed out 
   return (

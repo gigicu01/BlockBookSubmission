@@ -22,7 +22,8 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 const queryClient = new QueryClient()
 function App() {
   return (
-    <AuthProvider> 
+    // AuthProvider is used so that the session info can be accessed in all pages. So info can be changed on those pages based on the session.
+    <AuthProvider>
       <QueryClientProvider client={queryClient}>
       <Router>
         <NavBar /> 
